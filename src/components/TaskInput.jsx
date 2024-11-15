@@ -4,12 +4,12 @@ function TaskInput({ addTask }) {
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState('Medium');
 
-//   const handleAdd = () => {
+  const handleAdd = () => {
 //     if (title.trim()) {
 //       addTask(title, priority);
 //       setTitle('');
 //     }
-//   };
+  };
 
   return (
     <div className="flex items-center gap-4 mb-6">
