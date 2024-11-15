@@ -1,3 +1,4 @@
+
 // import { useState, useEffect } from 'react';
 // import TaskInput from './components/TaskInput';
 // import TaskList from './components/TaskList';
@@ -48,6 +49,8 @@
 //       if (sortType === 'priority') {
 //         const priorityOrder = { High: 1, Medium: 2, Low: 3 };
 //         return priorityOrder[a.priority] - priorityOrder[b.priority];
+//       } else if (sortType === 'completed') {
+//         return a.completed === b.completed ? 0 : a.completed ? 1 : -1;
 //       }
 //       return 0;
 //     });
@@ -69,9 +72,6 @@
 
 
 
-
-
-
 import { useState, useEffect } from 'react';
 import TaskInput from './components/TaskInput';
 import TaskList from './components/TaskList';
@@ -83,15 +83,17 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortType, setSortType] = useState('');
 
-  // Load tasks from local storage
   useEffect(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    if (savedTasks) setTasks(JSON.parse(savedTasks));
+    const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+    if (savedTasks) {
+      setTasks(savedTasks);
+    }
   }, []);
 
-  // Save tasks to local storage
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    if (tasks.length > 0) {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
   }, [tasks]);
 
   const addTask = (title, priority) => {
@@ -105,19 +107,23 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    setTasks(tasks.filter(task => task.id !== id));
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
   const toggleComplete = (id) => {
-    setTasks(
-      tasks.map(task =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
     );
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
   const filteredTasks = tasks
-    .filter(task => task.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    .filter((task) =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
     .sort((a, b) => {
       if (sortType === 'priority') {
         const priorityOrder = { High: 1, Medium: 2, Low: 3 };
