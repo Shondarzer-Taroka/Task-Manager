@@ -40,8 +40,10 @@ function TaskInput({ addTask }) {
     );
 }
 
-export default TaskInput;
-
 TaskInput.propTypes = {
     addTask: PropTypes.func.isRequired
 }
+
+export default TaskInput;
+
+

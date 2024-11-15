@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 function TaskItem({ task, deleteTask, toggleComplete }) {
     return (
       <div className={`p-4 border rounded-lg flex justify-between items-center ${task.completed ? 'bg-green-100' : 'bg-white'}`}>
@@ -16,5 +17,17 @@ function TaskItem({ task, deleteTask, toggleComplete }) {
     );
   }
   
-  export default TaskItem;
-  
+
+
+  TaskItem.propTypes = {
+    task: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      title: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
+      priority: PropTypes.oneOf(["High", "Medium", "Low"]),
+    }).isRequired,
+    deleteTask: PropTypes.func.isRequired,
+    toggleComplete: PropTypes.func.isRequired,
+  };
+
+export default TaskItem;
