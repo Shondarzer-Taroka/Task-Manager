@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+/src/components/TaskList.jsx
+/src/components/TaskItem.jsx
+/src/components/SortButtons.jsx
+/src/components/SearchBar.jsx
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

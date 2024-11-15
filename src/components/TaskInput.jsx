@@ -5,10 +5,10 @@ function TaskInput({ addTask }) {
   const [priority, setPriority] = useState('Medium');
 
   const handleAdd = () => {
-//     if (title.trim()) {
-//       addTask(title, priority);
-//       setTitle('');
-//     }
+    if (title.trim()) {
+      addTask(title, priority);
+      setTitle('');
+    }
   };
 
   return (
