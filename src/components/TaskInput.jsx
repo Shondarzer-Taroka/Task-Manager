@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 function TaskInput({ addTask }) {
-//   const [title, setTitle] = useState('');
-//   const [priority, setPriority] = useState('Medium');
+  const [title, setTitle] = useState('');
+  const [priority, setPriority] = useState('Medium');
 
 //   const handleAdd = () => {
 //     if (title.trim()) {
