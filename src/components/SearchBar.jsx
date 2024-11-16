@@ -15,3 +15,4 @@ SearchBar.propTypes = {
 }
 
 export default SearchBar;
+
