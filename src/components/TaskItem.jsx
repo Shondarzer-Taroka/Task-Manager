@@ -1,33 +1,56 @@
-import PropTypes from "prop-types";
+
+
+import PropTypes from 'prop-types';
+import { FaTrash, FaCheckCircle, FaRegCircle } from 'react-icons/fa';
+
 function TaskItem({ task, deleteTask, toggleComplete }) {
     return (
-      <div className={`p-4 border rounded-lg flex justify-between items-center ${task.completed ? 'bg-green-100' : 'bg-white'}`}>
-        <div>
-          <input type="checkbox" checked={task.completed} onChange={() => toggleComplete(task.id)} className="mr-4" />
-          <span className={`${task.completed ? 'line-through text-gray-400' : ''}`}>{task.title}</span>
-          <span className="ml-2 text-sm text-gray-500">({task.priority})</span>
-        </div>
-        <button
-          onClick={() => deleteTask(task.id)}
-          className="text-red-500 hover:text-red-600"
+        <div
+            className={`flex items-center justify-between p-4 rounded-lg shadow-md transition-all duration-300 ${
+                task.completed ? 'bg-green-100' : 'bg-white'
+            }`}
         >
-          Delete
-        </button>
-      </div>
+          
+            <button
+                onClick={() => toggleComplete(task.id)}
+                className="text-green-500 hover:text-green-700 transition duration-200 mr-4"
+                title={task.completed ? 'Mark as Incomplete' : 'Mark as Completed'}
+            >
+                {task.completed ? <FaCheckCircle /> : <FaRegCircle />}
+            </button>
+
+          
+            <div
+                className={`cursor-pointer flex-1 ${
+                    task.completed ? 'line-through text-gray-500' : ''
+                }`}
+                onClick={() => toggleComplete(task.id)}
+            >
+                <h3 className="text-lg font-medium">{task.title}</h3>
+                <span className="text-sm text-gray-500">Priority: {task.priority}</span>
+            </div>
+
+          
+            <button
+                onClick={() => deleteTask(task.id)}
+                className="text-red-500 hover:text-red-700 transition duration-200"
+                title="Delete Task"
+            >
+                <FaTrash />
+            </button>
+        </div>
     );
-  }
-  
+}
 
-
-  TaskItem.propTypes = {
+TaskItem.propTypes = {
     task: PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      title: PropTypes.string.isRequired,
-      completed: PropTypes.bool.isRequired,
-      priority: PropTypes.oneOf(["High", "Medium", "Low"]),
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        priority: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired
     }).isRequired,
     deleteTask: PropTypes.func.isRequired,
-    toggleComplete: PropTypes.func.isRequired,
-  };
+    toggleComplete: PropTypes.func.isRequired
+};
 
 export default TaskItem;

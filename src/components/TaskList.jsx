@@ -1,31 +1,32 @@
+// import PropTypes from 'prop-types';
+// import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import TaskItem from './TaskItem';
+// import './animations.css';
 
+// function TaskList({ tasks, deleteTask, toggleComplete }) {
+//     return (
+//         <TransitionGroup className="task-list space-y-4">
+//             {tasks.map(task => (
+//                 <CSSTransition
+//                     key={task.id}
+//                     timeout={500}
+//                     classNames="task"
+//                 >
+//                     <TaskItem
+//                         task={task}
+//                         deleteTask={deleteTask}
+//                         toggleComplete={toggleComplete}
+//                     />
+//                 </CSSTransition>
+//             ))}
+//         </TransitionGroup>
+//     );
+// }
 
-import PropTypes from 'prop-types';
-import TaskItem from './TaskItem';
+// TaskList.propTypes = {
+//     tasks: PropTypes.array.isRequired,
+//     deleteTask: PropTypes.func.isRequired,
+//     toggleComplete: PropTypes.func.isRequired
+// };
 
-function TaskList({ tasks, deleteTask, toggleComplete }) {
-  return (
-    <div className="space-y-4">
-      {tasks.length === 0 ? (
-        <p className="text-gray-500 text-center">No tasks available</p>
-      ) : (
-        tasks.map(task => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            deleteTask={deleteTask}
-            toggleComplete={toggleComplete}
-          />
-        ))
-      )}
-    </div>
-  );
-}
-
-TaskList.propTypes = {
-  tasks: PropTypes.array.isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  toggleComplete: PropTypes.func.isRequired,
-};
-
-export default TaskList;
+// export default TaskList;

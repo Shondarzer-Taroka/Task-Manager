@@ -40,13 +40,14 @@ function App() {
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
+
   const toggleComplete = (id) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, completed: !task.completed } : task
+    setTasks(
+        tasks.map(task =>
+            task.id === id ? { ...task, completed: !task.completed } : task
+        )
     );
-    setTasks(updatedTasks);
-    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-  };
+};
 
   const filteredTasks = tasks
     .filter((task) =>
