@@ -57,9 +57,8 @@ Ensure you have the following installed on your system:
    cd Task-Manager
 
 ```bash
-npm install
+npm install 
 
-```bash
 npm run dev
 
 
